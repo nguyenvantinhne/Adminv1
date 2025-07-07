@@ -1,621 +1,618 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MrTínhiOS - Admin Panel</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --primary-color: #4e73df;
-      --secondary-color: #224abe;
-      --success-color: #1cc88a;
-      --danger-color: #e74a3b;
-      --warning-color: #f6c23e;
-      --dark-color: #5a5c69;
-    }
-    
-    body {
-      background-color: #f8f9fc;
-      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      height: 100vh;
-    }
-    
-    .login-container {
-      max-width: 400px;
-      margin: 0 auto;
-    }
-    
-    .admin-container {
-      display: none;
-    }
-    
-    .card {
-      border: none;
-      border-radius: 0.35rem;
-      box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-    }
-    
-    .sidebar {
-      background: linear-gradient(180deg, var(--primary-color) 10%, var(--secondary-color) 100%);
-      min-height: 100vh;
-    }
-    
-    .sidebar-brand {
-      height: 4.375rem;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: 800;
-      padding: 1.5rem 1rem;
-      text-align: center;
-      letter-spacing: 0.05rem;
-      z-index: 1;
-      color: #fff;
-    }
-    
-    .sidebar-divider {
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      margin: 0 1rem 1rem;
-    }
-    
-    .nav-item .nav-link {
-      color: rgba(255, 255, 255, 0.8);
-      padding: 1rem;
-      font-weight: 600;
-    }
-    
-    .nav-item .nav-link:hover {
-      color: #fff;
-    }
-    
-    .nav-item .nav-link i {
-      margin-right: 0.25rem;
-    }
-    
-    .nav-item.active .nav-link {
-      color: #fff;
-    }
-    
-    .bg-gradient-primary {
-      background: linear-gradient(180deg, var(--primary-color) 10%, var(--secondary-color) 100%);
-    }
-    
-    .status-badge {
-      padding: 0.35em 0.65em;
-      font-size: 0.75em;
-      font-weight: 700;
-      border-radius: 0.25rem;
-    }
-    
-    .badge-pending {
-      background-color: #f6c23e;
-      color: #000;
-    }
-    
-    .badge-approved {
-      background-color: #1cc88a;
-      color: #fff;
-    }
-    
-    .badge-rejected {
-      background-color: #e74a3b;
-      color: #fff;
-    }
-    
-    .device-id {
-      font-family: monospace;
-      font-size: 0.8em;
-      color: #6c757d;
-    }
-    
-    .topbar {
-      height: 4.375rem;
-      box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-    }
-    
-    .dropdown-menu {
-      border: none;
-      box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --danger: #f72585;
+            --success: #4cc9f0;
+            --dark: #2b2d42;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --border: #dee2e6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+        }
+        
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Login Page */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .login-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .login-box h1 {
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .login-box .input-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .login-box label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+        
+        .login-box input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .login-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        
+        .login-box button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .login-box button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .error-message {
+            color: var(--danger);
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-header {
+            padding: 0 1.5rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .sidebar-header h2 {
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+        
+        .sidebar-menu {
+            padding: 1.5rem 0;
+            flex-grow: 1;
+        }
+        
+        .menu-item {
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .menu-item i {
+            margin-right: 0.75rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .menu-item.active, .menu-item:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+            border-left: 3px solid var(--primary);
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 2rem;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .header h1 {
+            font-size: 1.75rem;
+            color: var(--dark);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 0.75rem;
+        }
+        
+        /* Dashboard Cards */
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .card-title {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+        
+        .card-value {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .card-icon.pending {
+            background-color: #ffbe0b;
+        }
+        
+        .card-icon.approved {
+            background-color: var(--success);
+        }
+        
+        .card-icon.rejected {
+            background-color: var(--danger);
+        }
+        
+        /* Users Table */
+        .users-table {
+            width: 100%;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: var(--gray);
+        }
+        
+        .status {
+            padding: 0.25rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .status.pending {
+            background-color: #fff3bf;
+            color: #f59f00;
+        }
+        
+        .status.approved {
+            background-color: #d3f9d8;
+            color: #2b8a3e;
+        }
+        
+        .status.rejected {
+            background-color: #ffe3e3;
+            color: #c92a2a;
+        }
+        
+        .action-btn {
+            padding: 0.375rem 0.75rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .approve-btn {
+            background-color: var(--success);
+            color: white;
+            margin-right: 0.5rem;
+        }
+        
+        .approve-btn:hover {
+            background-color: #3aa8d8;
+        }
+        
+        .reject-btn {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .reject-btn:hover {
+            background-color: #e11571;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .dashboard-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-  <!-- Login Form -->
-  <div class="container d-flex align-items-center justify-content-center" id="loginContainer">
-    <div class="login-container">
-      <div class="card o-hidden border-0 shadow-lg my-5">
-        <div class="card-body p-0">
-          <div class="p-5">
-            <div class="text-center">
-              <h1 class="h4 text-gray-900 mb-4">Admin Panel</h1>
-              <p class="mb-4">Vui lòng đăng nhập để tiếp tục</p>
-            </div>
-            <form class="user" id="loginForm">
-              <div class="form-group">
-                <input type="text" class="form-control form-control-user" id="username" placeholder="Tên đăng nhập">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control form-control-user" id="password" placeholder="Mật khẩu">
-              </div>
-              <button type="submit" class="btn btn-primary btn-user btn-block">
-                Đăng nhập
-              </button>
+    <!-- Login Page -->
+    <div id="login-page" class="login-container">
+        <div class="login-box">
+            <h1>Admin Login</h1>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit">Login</button>
+                <div id="login-error" class="error-message hidden"></div>
             </form>
-            <hr>
-            <div class="text-center small text-danger" id="loginError"></div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-
-  <!-- Admin Panel (Hidden until login) -->
-  <div id="adminContainer" class="admin-container">
-    <div class="row">
-      <!-- Sidebar -->
-      <div class="col-lg-2">
+    
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="container hidden">
+        <!-- Sidebar -->
         <div class="sidebar">
-          <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-            <div class="sidebar-brand-icon">
-              <i class="fas fa-lock"></i>
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
             </div>
-            <div class="sidebar-brand-text mx-3">MrTínhiOS</div>
-          </a>
-          <div class="sidebar-divider"></div>
-          <div class="nav-item">
-            <a class="nav-link active" href="#">
-              <i class="fas fa-fw fa-users"></i>
-              <span>Quản lý tài khoản</span>
-            </a>
-          </div>
-          <div class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="fas fa-fw fa-laptop"></i>
-              <span>Quản lý thiết bị</span>
-            </a>
-          </div>
-          <div class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="fas fa-fw fa-cog"></i>
-              <span>Cài đặt hệ thống</span>
-            </a>
-          </div>
-          <div class="nav-item">
-            <a class="nav-link" href="#" id="logoutBtn">
-              <i class="fas fa-fw fa-sign-out-alt"></i>
-              <span>Đăng xuất</span>
-            </a>
-          </div>
+            <div class="sidebar-menu">
+                <div class="menu-item active">
+                    <i class="fas fa-users"></i>
+                    <span>User Management</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <!-- Main Content -->
-      <div class="col-lg-10">
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand topbar mb-4 static-top bg-white">
-          <h1 class="h3 mb-0 text-gray-800">Quản lý tài khoản đăng ký</h1>
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="adminUsername">Admin</span>
-                <i class="fas fa-user-circle fa-2x"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right shadow">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Thông tin cá nhân
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" id="logoutDropdownBtn">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Đăng xuất
-                </a>
-              </div>
-            </li>
-          </ul>
-        </nav>
-
-        <!-- Content Row -->
-        <div class="container-fluid">
-          <!-- Filter Section -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Bộ lọc</h6>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>User Management</h1>
+                <div class="user-info">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=4361ee&color=fff" alt="Admin">
+                    <span>Admin</span>
+                </div>
             </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-4">
-                  <label class="form-label">Trạng thái</label>
-                  <select class="form-control" id="statusFilter">
-                    <option value="all">Tất cả</option>
-                    <option value="pending">Chờ duyệt</option>
-                    <option value="approved">Đã duyệt</option>
-                    <option value="rejected">Từ chối</option>
-                  </select>
-                </div>
-                <div class="col-md-4">
-                  <label class="form-label">Từ ngày</label>
-                  <input type="date" class="form-control" id="fromDate">
-                </div>
-                <div class="col-md-4">
-                  <label class="form-label">Đến ngày</label>
-                  <input type="date" class="form-control" id="toDate">
-                </div>
-              </div>
-              <div class="row mt-3">
-                <div class="col-md-12 text-right">
-                  <button class="btn btn-primary" id="applyFilterBtn">
-                    <i class="fas fa-filter"></i> Áp dụng
-                  </button>
-                  <button class="btn btn-secondary" id="resetFilterBtn">
-                    <i class="fas fa-redo"></i> Đặt lại
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- User Table -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Danh sách tài khoản</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="userTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Tên</th>
-                      <th>Email</th>
-                      <th>Device ID</th>
-                      <th>Ngày đăng ký</th>
-                      <th>Trạng thái</th>
-                      <th>Hành động</th>
-                    </tr>
-                  </thead>
-                  <tbody id="userTableBody">
-                    <!-- Data will be loaded here -->
-                    <tr>
-                      <td colspan="7" class="text-center py-4">
-                        <div class="spinner-border text-primary" role="status">
-                          <span class="visually-hidden">Loading...</span>
+            
+            <!-- Dashboard Cards -->
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Pending Users</div>
+                            <div id="pending-count" class="card-value">0</div>
                         </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+                        <div class="card-icon pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Approved Users</div>
+                            <div id="approved-count" class="card-value">0</div>
+                        </div>
+                        <div class="card-icon approved">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Rejected Users</div>
+                            <div id="rejected-count" class="card-value">0</div>
+                        </div>
+                        <div class="card-icon rejected">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            
+            <!-- Users Table -->
+            <div class="card">
+                <div class="users-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body">
+                            <!-- Users will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <!-- Action Modals -->
-  <div class="modal fade" id="approveModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Duyệt tài khoản</h5>
-          <button type="button" class="close" data-bs-dismiss="modal">
-            <span>&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Bạn có chắc chắn muốn duyệt tài khoản này?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-          <button type="button" class="btn btn-success" id="confirmApproveBtn">Duyệt</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Từ chối tài khoản</h5>
-          <button type="button" class="close" data-bs-dismiss="modal">
-            <span>&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Bạn có chắc chắn muốn từ chối tài khoản này?</p>
-          <div class="form-group">
-            <label for="rejectReason">Lý do từ chối</label>
-            <textarea class="form-control" id="rejectReason" rows="3"></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-          <button type="button" class="btn btn-danger" id="confirmRejectBtn">Từ chối</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Biến toàn cục
-    let currentUser = null;
-    let currentUserId = null;
-    let authToken = null;
-    const API_BASE_URL = window.location.origin;
-
-    // Khởi tạo trang
-    document.addEventListener('DOMContentLoaded', function() {
-      // Kiểm tra nếu đã đăng nhập
-      const savedToken = localStorage.getItem('adminAuthToken');
-      if (savedToken) {
-        verifyToken(savedToken);
-      }
-
-      // Xử lý đăng nhập
-      document.getElementById('loginForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        login();
-      });
-
-      // Xử lý đăng xuất
-      document.getElementById('logoutBtn').addEventListener('click', logout);
-      document.getElementById('logoutDropdownBtn').addEventListener('click', logout);
-
-      // Xử lý modal
-      document.getElementById('confirmApproveBtn').addEventListener('click', approveUser);
-      document.getElementById('confirmRejectBtn').addEventListener('click', rejectUser);
-
-      // Xử lý filter
-      document.getElementById('applyFilterBtn').addEventListener('click', loadUsers);
-      document.getElementById('resetFilterBtn').addEventListener('click', resetFilters);
-    });
-
-    // Đăng nhập
-    async function login() {
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value;
-      const errorElement = document.getElementById('loginError');
-
-      if (!username || !password) {
-        errorElement.textContent = 'Vui lòng nhập đầy đủ thông tin';
-        return;
-      }
-
-      try {
-        const response = await fetch(`${API_BASE_URL}/admin/login`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ username, password })
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('login-form');
+            const loginPage = document.getElementById('login-page');
+            const adminPanel = document.getElementById('admin-panel');
+            const loginError = document.getElementById('login-error');
+            
+            // Handle login
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        loginPage.classList.add('hidden');
+                        adminPanel.classList.remove('hidden');
+                        loadUsers();
+                    } else {
+                        loginError.textContent = data.message || 'Login failed';
+                        loginError.classList.remove('hidden');
+                    }
+                })
+                .catch(error => {
+                    loginError.textContent = 'An error occurred. Please try again.';
+                    loginError.classList.remove('hidden');
+                    console.error('Login error:', error);
+                });
+            });
+            
+            // Load users and update counts
+            function loadUsers() {
+                fetch('/users')
+                    .then(response => response.json())
+                    .then(users => {
+                        const tableBody = document.getElementById('users-table-body');
+                        tableBody.innerHTML = '';
+                        
+                        let pendingCount = 0;
+                        let approvedCount = 0;
+                        let rejectedCount = 0;
+                        
+                        users.forEach(user => {
+                            const row = document.createElement('tr');
+                            
+                            // Determine status count
+                            if (user.status === 'pending') pendingCount++;
+                            else if (user.status === 'approved') approvedCount++;
+                            else if (user.status === 'rejected') rejectedCount++;
+                            
+                            // Create status badge
+                            let statusBadge = '';
+                            if (user.status === 'pending') {
+                                statusBadge = '<span class="status pending">Pending</span>';
+                            } else if (user.status === 'approved') {
+                                statusBadge = '<span class="status approved">Approved</span>';
+                            } else if (user.status === 'rejected') {
+                                statusBadge = '<span class="status rejected">Rejected</span>';
+                            }
+                            
+                            // Create action buttons
+                            let actions = '';
+                            if (user.status === 'pending') {
+                                actions = `
+                                    <button class="action-btn approve-btn" data-id="${user.id}">
+                                        <i class="fas fa-check"></i> Approve
+                                    </button>
+                                    <button class="action-btn reject-btn" data-id="${user.id}">
+                                        <i class="fas fa-times"></i> Reject
+                                    </button>
+                                `;
+                            } else {
+                                actions = '-';
+                            }
+                            
+                            row.innerHTML = `
+                                <td>${user.id}</td>
+                                <td>${user.name || 'N/A'}</td>
+                                <td>${user.email || 'N/A'}</td>
+                                <td>${statusBadge}</td>
+                                <td>${actions}</td>
+                            `;
+                            
+                            tableBody.appendChild(row);
+                        });
+                        
+                        // Update counts
+                        document.getElementById('pending-count').textContent = pendingCount;
+                        document.getElementById('approved-count').textContent = approvedCount;
+                        document.getElementById('rejected-count').textContent = rejectedCount;
+                        
+                        // Add event listeners to action buttons
+                        document.querySelectorAll('.approve-btn').forEach(btn => {
+                            btn.addEventListener('click', function() {
+                                const userId = this.getAttribute('data-id');
+                                approveUser(userId);
+                            });
+                        });
+                        
+                        document.querySelectorAll('.reject-btn').forEach(btn => {
+                            btn.addEventListener('click', function() {
+                                const userId = this.getAttribute('data-id');
+                                rejectUser(userId);
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error loading users:', error);
+                    });
+            }
+            
+            // Approve user
+            function approveUser(userId) {
+                fetch(`/users/${userId}/approve`, {
+                    method: 'POST'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        loadUsers();
+                    } else {
+                        alert('Failed to approve user');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error approving user:', error);
+                    alert('An error occurred while approving user');
+                });
+            }
+            
+            // Reject user
+            function rejectUser(userId) {
+                fetch(`/users/${userId}/reject`, {
+                    method: 'POST'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        loadUsers();
+                    } else {
+                        alert('Failed to reject user');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error rejecting user:', error);
+                    alert('An error occurred while rejecting user');
+                });
+            }
         });
-
-        const data = await response.json();
-
-        if (data.success) {
-          authToken = data.token;
-          localStorage.setItem('adminAuthToken', authToken);
-          currentUser = data.user;
-          showAdminPanel();
-        } else {
-          errorElement.textContent = data.message || 'Đăng nhập thất bại';
-        }
-      } catch (error) {
-        errorElement.textContent = 'Lỗi kết nối đến server';
-        console.error('Login error:', error);
-      }
-    }
-
-    // Xác thực token
-    async function verifyToken(token) {
-      try {
-        const response = await fetch(`${API_BASE_URL}/admin/verify`, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          authToken = token;
-          currentUser = data.user;
-          showAdminPanel();
-        } else {
-          localStorage.removeItem('adminAuthToken');
-        }
-      } catch (error) {
-        console.error('Token verification error:', error);
-      }
-    }
-
-    // Hiển thị admin panel
-    function showAdminPanel() {
-      document.getElementById('loginContainer').style.display = 'none';
-      document.getElementById('adminContainer').style.display = 'block';
-      document.getElementById('adminUsername').textContent = currentUser.username;
-      loadUsers();
-    }
-
-    // Đăng xuất
-    function logout() {
-      localStorage.removeItem('adminAuthToken');
-      authToken = null;
-      currentUser = null;
-      document.getElementById('loginContainer').style.display = 'flex';
-      document.getElementById('adminContainer').style.display = 'none';
-      document.getElementById('username').value = '';
-      document.getElementById('password').value = '';
-      document.getElementById('loginError').textContent = '';
-    }
-
-    // Tải danh sách người dùng
-    async function loadUsers() {
-      const status = document.getElementById('statusFilter').value;
-      const fromDate = document.getElementById('fromDate').value;
-      const toDate = document.getElementById('toDate').value;
-
-      try {
-        const response = await fetch(`${API_BASE_URL}/admin/users?status=${status}&from=${fromDate}&to=${toDate}`, {
-          headers: {
-            'Authorization': `Bearer ${authToken}`
-          }
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          renderUserTable(data.users);
-        } else {
-          if (data.message === 'Unauthorized') {
-            logout();
-          }
-          console.error('Error loading users:', data.message);
-        }
-      } catch (error) {
-        console.error('Error loading users:', error);
-      }
-    }
-
-    // Reset bộ lọc
-    function resetFilters() {
-      document.getElementById('statusFilter').value = 'all';
-      document.getElementById('fromDate').value = '';
-      document.getElementById('toDate').value = '';
-      loadUsers();
-    }
-
-    // Hiển thị bảng người dùng
-    function renderUserTable(users) {
-      const tbody = document.getElementById('userTableBody');
-      
-      if (users.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4">Không có dữ liệu</td></tr>';
-        return;
-      }
-
-      tbody.innerHTML = users.map(user => `
-        <tr>
-          <td>${user.id}</td>
-          <td>${user.name}</td>
-          <td>${user.email}</td>
-          <td><span class="device-id">${user.deviceId}</span></td>
-          <td>${new Date(user.registerDate).toLocaleString()}</td>
-          <td>
-            <span class="status-badge ${getStatusBadgeClass(user.status)}">
-              ${getStatusText(user.status)}
-            </span>
-          </td>
-          <td>
-            ${user.status === 'pending' ? `
-              <button class="btn btn-sm btn-success me-2" onclick="showApproveModal(${user.id})">
-                <i class="fas fa-check"></i> Duyệt
-              </button>
-              <button class="btn btn-sm btn-danger" onclick="showRejectModal(${user.id})">
-                <i class="fas fa-times"></i> Từ chối
-              </button>
-            ` : ''}
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    // Hiển thị modal duyệt
-    function showApproveModal(userId) {
-      currentUserId = userId;
-      const modal = new bootstrap.Modal(document.getElementById('approveModal'));
-      modal.show();
-    }
-
-    // Hiển thị modal từ chối
-    function showRejectModal(userId) {
-      currentUserId = userId;
-      document.getElementById('rejectReason').value = '';
-      const modal = new bootstrap.Modal(document.getElementById('rejectModal'));
-      modal.show();
-    }
-
-    // Duyệt người dùng
-    async function approveUser() {
-      try {
-        const response = await fetch(`${API_BASE_URL}/admin/users/${currentUserId}/approve`, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${authToken}`,
-            'Content-Type': 'application/json'
-          }
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          bootstrap.Modal.getInstance(document.getElementById('approveModal')).hide();
-          loadUsers();
-        } else {
-          alert(data.message || 'Có lỗi xảy ra khi duyệt');
-        }
-      } catch (error) {
-        console.error('Error approving user:', error);
-        alert('Lỗi kết nối đến server');
-      }
-    }
-
-    // Từ chối người dùng
-    async function rejectUser() {
-      const reason = document.getElementById('rejectReason').value.trim();
-      
-      if (!reason) {
-        alert('Vui lòng nhập lý do từ chối');
-        return;
-      }
-
-      try {
-        const response = await fetch(`${API_BASE_URL}/admin/users/${currentUserId}/reject`, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${authToken}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ reason })
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          bootstrap.Modal.getInstance(document.getElementById('rejectModal')).hide();
-          loadUsers();
-        } else {
-          alert(data.message || 'Có lỗi xảy ra khi từ chối');
-        }
-      } catch (error) {
-        console.error('Error rejecting user:', error);
-        alert('Lỗi kết nối đến server');
-      }
-    }
-
-    // Helper functions
-    function getStatusBadgeClass(status) {
-      switch (status) {
-        case 'pending': return 'badge-pending';
-        case 'approved': return 'badge-approved';
-        case 'rejected': return 'badge-rejected';
-        default: return '';
-      }
-    }
-
-    function getStatusText(status) {
-      switch (status) {
-        case 'pending': return 'Chờ duyệt';
-        case 'approved': return 'Đã duyệt';
-        case 'rejected': return 'Từ chối';
-        default: return status;
-      }
-    }
-  </script>
+    </script>
 </body>
-                  </html>
+              </html>
